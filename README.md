@@ -16,13 +16,13 @@ This sample application is not an official Google product.
 This sample source code and project is designed to work with Eclipse. It was tested with Eclipse 3.8.
 
 
-The sample uses [JavaPNS library](https://code.google.com/p/javapns/). As of June 2013, JavaPNS makes write() and flush() calls on the socket for every notification that is sent. This significantly reduces the notification throughput for this sample on Google App Engine to a few hundred notifications per second per backend instance. If you need to achieve higher throughput, you need to buffer notifications, either by modifying JavaPNS or using a different library.
+The sample uses [JavaPNS library](https://code.google.com/p/javapns/). As of June 2013, JavaPNS makes write() and flush() calls on the socket for every notification that is sent. This significantly reduces the notification throughput for this sample on Google App Engine to a few hundred notifications per second per backend instance. If you need to achieve higher throughput, you need to buffer notifications, either by modifying JavaPNS or using a different library. If you use JavaPNS library, you should download the librariy and its dependency and put them under cloudpush-worker/lib/ directory.
 
 ## Overview
 This sample shows how Google App Engine can be used to orchestrate push notifications to iOS devices.
 
 ### Prerequisite
-1. Eclipse with Google Plugin for Eclipse.
+1. Latest [Apache Maven](http://maven.apache.org/download.cgi). Please refer to the [Google App Engine Maven Document](https://cloud.google.com/appengine/docs/java/tools/maven) for details.
 
 2. When deploying this sample to App Engine, the billing needs to be enabled for the target app id. When you are done with evaluating the sample,
 you should stop the 'worker' backend to reduce the billable usage.
@@ -35,7 +35,7 @@ The download contains the Java backend. After the download finishes, unzip the f
 
 2. Add your APNS certificate p12 file to the src folder.
 
-3. Edit src/com.google.solutions.mobilepushnotification/Consts.java and update CERTTIFICATE_FILE_NAME and CERTIFICATE_PASSWORD with the file name and password for your certificate.
+3. Edit src/com/google/solutions/mobilepushnotification/Consts.java and update CERTTIFICATE_FILE_NAME and CERTIFICATE_PASSWORD with the file name and password for your certificate.
 
 4. In the same file update CLIENT_ID with your Client Id for iOS devices. For information how to obtain the Client Id see [documentation](https://developers.google.com/console/help/#installed_applications).
 
