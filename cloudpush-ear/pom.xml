@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.google.cloud.solutions.mobilepushnotification</groupId>
+    <artifactId>solutions-ios-push-notification-sample-java</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <groupId>com.google.cloud.solutions.mobilepushnotification</groupId>
+  <artifactId>cloudpush-ear</artifactId>
+  <version>1.0</version>
+  <packaging>ear</packaging>
+
+  <name>cloudpush-ear</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <version>5</version>
+          <defaultLibBundleDir>lib</defaultLibBundleDir>
+          <unpackTypes>war</unpackTypes>
+          <applicationXml>${project.basedir}/src/main/application/META-INF/maven-application.xml</applicationXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.google.appengine</groupId>
+        <artifactId>appengine-maven-plugin</artifactId>
+        <version>${appengine.target.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.cloud.solutions.mobilepushnotification</groupId>
+      <artifactId>cloudpush-front</artifactId>
+      <version>1.0</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.google.cloud.solutions.mobilepushnotification</groupId>
+      <artifactId>cloudpush-worker</artifactId>
+      <version>1.0</version>
+      <type>war</type>
+    </dependency>
+  </dependencies>
+  <properties/>
+</project>

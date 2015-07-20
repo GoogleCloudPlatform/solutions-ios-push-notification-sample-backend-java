@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5">
+  <display-name>cloudpush-ear</display-name>
+  <module>
+    <web>
+      <web-uri>cloudpush-worker-1.0.war</web-uri>
+      <context-root>cloudpush-worker</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>cloudpush-front-1.0.war</web-uri>
+      <context-root>cloudpush-front</context-root>
+    </web>
+  </module>
+</application>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.google.cloud.solutions.mobilepushnotification</groupId>
+    <artifactId>solutions-ios-push-notification-sample-java</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <groupId>com.google.cloud.solutions.mobilepushnotification</groupId>
+  <artifactId>cloudpush-front</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+
+  <name>cloudpush-front</name>
+
+
+
+  <dependencies>
+    <!-- Compile/runtime dependencies -->
+    <dependency>
+      <groupId>com.google.appengine</groupId>
+      <artifactId>appengine-api-1.0-sdk</artifactId>
+      <version>${appengine.target.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <!--  Gson: Java to Json conversion -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.3.1</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.datanucleus</groupId>
+      <artifactId>datanucleus-core</artifactId>
+      <version>3.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.datanucleus</groupId>
+      <artifactId>javax.persistence</artifactId>
+      <version>2.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.datanucleus</groupId>
+      <artifactId>datanucleus-api-jpa</artifactId>
+      <version>3.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.appengine.orm</groupId>
+      <artifactId>datanucleus-appengine</artifactId>
+      <version>2.1.2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.google.appengine</groupId>
+        <artifactId>appengine-endpoints</artifactId>
+        <version>${appengine.target.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.5.1</version>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.appengine</groupId>
+        <artifactId>appengine-maven-plugin</artifactId>
+        <version>${appengine.target.version}</version>
+        <configuration>
+            <enableJarClasses>false</enableJarClasses>
+            <!-- Comment in the below snippet to bind to all IPs instead of just localhost -->
+            <!-- address>0.0.0.0</address>
+            <port>8080</port -->
+            <!-- Comment in the below snippet to enable local debugging with a remove debugger
+                 like those included with Eclipse or IntelliJ -->
+            <!-- jvmFlags>
+              <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
+            </jvmFlags -->
+        </configuration>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>endpoints_get_discovery_doc</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
+
+      <!-- This plug-in "enhances" your domain model objects (i.e. makes them persistent for datanucleus) -->
+      <plugin>
+        <groupId>org.datanucleus</groupId>
+        <artifactId>maven-datanucleus-plugin</artifactId>
+        <version>3.1.3</version>
+        <configuration>
+<!-- Make sure this path contains your persistent classes! -->
+          <mappingIncludes>**/*.class</mappingIncludes>
+          <verbose>true</verbose>
+          <api>JPA</api>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>enhance</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+              <groupId>org.datanucleus</groupId>
+              <version>3.1.3</version>
+              <artifactId>datanucleus-api-jpa</artifactId>
+          </dependency>
+          <dependency>
+              <groupId>org.datanucleus</groupId>
+              <artifactId>datanucleus-core</artifactId>
+              <version>3.1.3</version>
+          </dependency>
+          <dependency>
+              <groupId>org.datanucleus</groupId>
+              <artifactId>datanucleus-enhancer</artifactId>
+              <version>3.1.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
