@@ -30,7 +30,7 @@ you should stop the 'worker' backend to reduce the billable usage.
 ## Download Instruction
 The download contains the Java backend. After the download finishes, unzip the files and import the project into Eclipse.
 
-## Developer Guide using Eclipse - modyfying and deploying the backend
+## Developer Guide using Eclipse - modifying and deploying the backend
 1. Open war/WEB-INF/appengine-web.xml and enter your app id within the application XML element.
 
 2. Add your APNS certificate p12 file to the src folder.
